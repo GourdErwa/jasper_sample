@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="simfang_heiti">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../jar/lib/simfang_heiti.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

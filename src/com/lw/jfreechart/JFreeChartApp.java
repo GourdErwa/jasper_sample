@@ -1,27 +1,6 @@
-package com.lw.jfreechart;/*
- * JasperReports - Free Java Reporting Library.
- * Copyright (C) 2001 - 2014 TIBCO Software Inc. All rights reserved.
- * http://www.jaspersoft.com
- *
- * Unless you have purchased a commercial license agreement from Jaspersoft,
- * the following license terms apply:
- *
- * This program is part of JasperReports.
- *
- * JasperReports is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * JasperReports is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public License
- * along with JasperReports. If not, see <http://www.gnu.org/licenses/>.
- */
+package com.lw.jfreechart;
 
+import com.lw.Params;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.export.JRCsvExporter;
 import net.sf.jasperreports.engine.export.JRRtfExporter;
@@ -44,15 +23,15 @@ import java.io.File;
  */
 public class JFreeChartApp extends AbstractSampleApp {
 
+    public static final String JASPER_PATH = Params.getReportPath("jfreechart", "JFreeChartReport.jasper");
+    public static final String JRPRINT_PATH = Params.getReportPath("jfreechart", "JFreeChartReport.jrprint");
 
     /**
      *
      */
     public static void main(String[] args) throws JRException {
         new JFreeChartApp().test();
-
     }
-
 
     /**
      *
@@ -60,7 +39,7 @@ public class JFreeChartApp extends AbstractSampleApp {
     public void test() throws JRException {
         fill();
         pdf();
-        xmlEmbed();
+        /*xmlEmbed();
         xml();
         html();
         rtf();
@@ -72,7 +51,7 @@ public class JFreeChartApp extends AbstractSampleApp {
         docx();
         xlsx();
         pptx();
-        xhtml();
+        xhtml();*/
     }
 
 
@@ -81,7 +60,7 @@ public class JFreeChartApp extends AbstractSampleApp {
      */
     public void fill() throws JRException {
         long start = System.currentTimeMillis();
-        JasperFillManager.fillReportToFile("build/reports/JFreeChartReport.jasper", null, new JREmptyDataSource());
+        JasperFillManager.fillReportToFile(JASPER_PATH, null, new JREmptyDataSource());
         System.err.println("Filling time : " + (System.currentTimeMillis() - start));
     }
 
@@ -91,7 +70,7 @@ public class JFreeChartApp extends AbstractSampleApp {
      */
     public void print() throws JRException {
         long start = System.currentTimeMillis();
-        JasperPrintManager.printReport("build/reports/JFreeChartReport.jrprint", true);
+        JasperPrintManager.printReport(JRPRINT_PATH, true);
         System.err.println("Printing time : " + (System.currentTimeMillis() - start));
     }
 
@@ -101,7 +80,7 @@ public class JFreeChartApp extends AbstractSampleApp {
      */
     public void pdf() throws JRException {
         long start = System.currentTimeMillis();
-        JasperExportManager.exportReportToPdfFile("build/reports/JFreeChartReport.jrprint");
+        JasperExportManager.exportReportToPdfFile(JRPRINT_PATH);
         System.err.println("PDF creation time : " + (System.currentTimeMillis() - start));
     }
 
@@ -111,7 +90,7 @@ public class JFreeChartApp extends AbstractSampleApp {
      */
     public void rtf() throws JRException {
         long start = System.currentTimeMillis();
-        File sourceFile = new File("build/reports/JFreeChartReport.jrprint");
+        File sourceFile = new File(JRPRINT_PATH);
 
         JasperPrint jasperPrint = (JasperPrint) JRLoader.loadObject(sourceFile);
 
@@ -133,7 +112,7 @@ public class JFreeChartApp extends AbstractSampleApp {
      */
     public void xml() throws JRException {
         long start = System.currentTimeMillis();
-        JasperExportManager.exportReportToXmlFile("build/reports/JFreeChartReport.jrprint", false);
+        JasperExportManager.exportReportToXmlFile(JRPRINT_PATH, false);
         System.err.println("XML creation time : " + (System.currentTimeMillis() - start));
     }
 
@@ -143,7 +122,7 @@ public class JFreeChartApp extends AbstractSampleApp {
      */
     public void xmlEmbed() throws JRException {
         long start = System.currentTimeMillis();
-        JasperExportManager.exportReportToXmlFile("build/reports/JFreeChartReport.jrprint", true);
+        JasperExportManager.exportReportToXmlFile(JRPRINT_PATH, true);
         System.err.println("XML creation time : " + (System.currentTimeMillis() - start));
     }
 
@@ -153,7 +132,7 @@ public class JFreeChartApp extends AbstractSampleApp {
      */
     public void html() throws JRException {
         long start = System.currentTimeMillis();
-        JasperExportManager.exportReportToHtmlFile("build/reports/JFreeChartReport.jrprint");
+        JasperExportManager.exportReportToHtmlFile(JRPRINT_PATH);
         System.err.println("HTML creation time : " + (System.currentTimeMillis() - start));
     }
 
@@ -163,7 +142,7 @@ public class JFreeChartApp extends AbstractSampleApp {
      */
     public void xls() throws JRException {
         long start = System.currentTimeMillis();
-        File sourceFile = new File("build/reports/JFreeChartReport.jrprint");
+        File sourceFile = new File(JRPRINT_PATH);
 
         JasperPrint jasperPrint = (JasperPrint) JRLoader.loadObject(sourceFile);
 
@@ -189,7 +168,7 @@ public class JFreeChartApp extends AbstractSampleApp {
     @SuppressWarnings("deprecation")
     public void jxl() throws JRException {
         long start = System.currentTimeMillis();
-        File sourceFile = new File("build/reports/JFreeChartReport.jrprint");
+        File sourceFile = new File(JRPRINT_PATH);
 
         JasperPrint jasperPrint = (JasperPrint) JRLoader.loadObject(sourceFile);
 
@@ -216,7 +195,7 @@ public class JFreeChartApp extends AbstractSampleApp {
      */
     public void csv() throws JRException {
         long start = System.currentTimeMillis();
-        File sourceFile = new File("build/reports/JFreeChartReport.jrprint");
+        File sourceFile = new File(JRPRINT_PATH);
 
         JasperPrint jasperPrint = (JasperPrint) JRLoader.loadObject(sourceFile);
 
@@ -238,7 +217,7 @@ public class JFreeChartApp extends AbstractSampleApp {
      */
     public void odt() throws JRException {
         long start = System.currentTimeMillis();
-        File sourceFile = new File("build/reports/JFreeChartReport.jrprint");
+        File sourceFile = new File(JRPRINT_PATH);
 
         JasperPrint jasperPrint = (JasperPrint) JRLoader.loadObject(sourceFile);
 
@@ -260,7 +239,7 @@ public class JFreeChartApp extends AbstractSampleApp {
      */
     public void ods() throws JRException {
         long start = System.currentTimeMillis();
-        File sourceFile = new File("build/reports/JFreeChartReport.jrprint");
+        File sourceFile = new File(JRPRINT_PATH);
 
         JasperPrint jasperPrint = (JasperPrint) JRLoader.loadObject(sourceFile);
 
@@ -285,7 +264,7 @@ public class JFreeChartApp extends AbstractSampleApp {
      */
     public void docx() throws JRException {
         long start = System.currentTimeMillis();
-        File sourceFile = new File("build/reports/JFreeChartReport.jrprint");
+        File sourceFile = new File(JRPRINT_PATH);
 
         JasperPrint jasperPrint = (JasperPrint) JRLoader.loadObject(sourceFile);
 
@@ -307,7 +286,7 @@ public class JFreeChartApp extends AbstractSampleApp {
      */
     public void xlsx() throws JRException {
         long start = System.currentTimeMillis();
-        File sourceFile = new File("build/reports/JFreeChartReport.jrprint");
+        File sourceFile = new File(JRPRINT_PATH);
 
         JasperPrint jasperPrint = (JasperPrint) JRLoader.loadObject(sourceFile);
 
@@ -332,7 +311,7 @@ public class JFreeChartApp extends AbstractSampleApp {
      */
     public void pptx() throws JRException {
         long start = System.currentTimeMillis();
-        File sourceFile = new File("build/reports/JFreeChartReport.jrprint");
+        File sourceFile = new File(JRPRINT_PATH);
 
         JasperPrint jasperPrint = (JasperPrint) JRLoader.loadObject(sourceFile);
 
@@ -355,7 +334,7 @@ public class JFreeChartApp extends AbstractSampleApp {
     @SuppressWarnings("deprecation")
     public void xhtml() throws JRException {
         long start = System.currentTimeMillis();
-        File sourceFile = new File("build/reports/JFreeChartReport.jrprint");
+        File sourceFile = new File(JRPRINT_PATH);
 
         JasperPrint jasperPrint = (JasperPrint) JRLoader.loadObject(sourceFile);
 
