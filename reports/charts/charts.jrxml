@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="charts" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" resourceBundle="charts" whenResourceMissingType="Key" uuid="bce0058f-ad1c-4b93-9d6b-6289cc922a3c">
+	<property name="net.sf.jasperreports.export.xls.ignore.graphics" value="false"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<import value="net.sf.jasperreports.engine.data.JRCsvDataSource"/>
+	<subDataset name="xyDataset" uuid="098b0755-483e-40aa-8ada-b6eaaa95a155">
+		<field name="amount" class="java.lang.Integer">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="probability" class="java.lang.Integer">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="sales_state" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<group name="salesState">
+			<groupExpression><![CDATA[$F{sales_state}]]></groupExpression>
+		</group>
+		<group name="probability">
+			<groupExpression><![CDATA[$F{probability}]]></groupExpression>
+		</group>
+		<group name="amount">
+			<groupExpression><![CDATA[$F{amount}]]></groupExpression>
+		</group>
+	</subDataset>
+	<parameter name="xyDatasource1" class="net.sf.jasperreports.engine.data.JRCsvDataSource"/>
+	<group name="XyLine">
+		<groupExpression><![CDATA[null]]></groupExpression>
+		<groupHeader>
+			<band height="400">
+				<xyLineChart>
+					<chart evaluationTime="Report">
+						<reportElement x="0" y="0" width="555" height="300" uuid="82e1a762-637c-4508-ab62-167cb116792b"/>
+						<chartTitle>
+							<font fontName="黑体" size="12" isBold="true" pdfEncoding="Identity-H"/>
+							<titleExpression><![CDATA["系统日交易量时序图"]]></titleExpression>
+						</chartTitle>
+						<chartSubtitle>
+							<subtitleExpression><![CDATA["2014-10-15"]]></subtitleExpression>
+						</chartSubtitle>
+						<chartLegend/>
+						<hyperlinkTooltipExpression><![CDATA["XY Line Chart"]]></hyperlinkTooltipExpression>
+					</chart>
+					<xyDataset>
+						<dataset incrementType="Group" incrementGroup="probability">
+							<datasetRun subDataset="xyDataset" uuid="121717f4-1f69-46c0-908d-7bcbbe1fb714">
+								<dataSourceExpression><![CDATA[$P{xyDatasource1}]]></dataSourceExpression>
+							</datasetRun>
+						</dataset>
+						<xySeries>
+							<seriesExpression><![CDATA[$F{sales_state}]]></seriesExpression>
+							<xValueExpression><![CDATA[$F{probability}]]></xValueExpression>
+							<yValueExpression><![CDATA[new Double($F{amount}.doubleValue() + $F{amount}.doubleValue() * Math.sin($V{REPORT_COUNT}.doubleValue() * Math.log(1 + $V{REPORT_COUNT}.doubleValue())))]]></yValueExpression>
+						</xySeries>
+					</xyDataset>
+					<linePlot isShowShapes="false">
+						<plot/>
+						<categoryAxisLabelExpression><![CDATA["小时"]]></categoryAxisLabelExpression>
+						<categoryAxisFormat>
+							<axisFormat/>
+						</categoryAxisFormat>
+						<valueAxisLabelExpression><![CDATA["交易量"]]></valueAxisLabelExpression>
+						<valueAxisFormat>
+							<axisFormat/>
+						</valueAxisFormat>
+					</linePlot>
+				</xyLineChart>
+			</band>
+		</groupHeader>
+	</group>
+</jasperReport>
