@@ -1,0 +1,70 @@
+<component name="libraryTable">
+  <library name="jasper_jars">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../jar/lib/ant-1.7.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jar/lib/antlr-2.7.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jar/lib/barbecue-1.5-beta1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jar/lib/barcode4j-2.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jar/lib/batik-anim.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jar/lib/batik-awt-util.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jar/lib/batik-bridge.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jar/lib/batik-css.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jar/lib/batik-dom.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jar/lib/batik-ext.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jar/lib/batik-gvt.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jar/lib/batik-parser.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jar/lib/batik-script.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jar/lib/batik-svg-dom.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jar/lib/batik-svggen.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jar/lib/batik-util.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jar/lib/batik-xml.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jar/lib/bcel-5.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jar/lib/bsh-2.0b4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jar/lib/castor-1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jar/lib/commons-beanutils-1.8.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jar/lib/commons-collections-3.2.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jar/lib/commons-digester-2.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jar/lib/commons-javaflow-20060411.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jar/lib/commons-logging-1.1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jar/lib/dom4j-1.6.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jar/lib/groovy-all-2.0.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jar/lib/hibernate3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jar/lib/hsqldb-1.8.0-10.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jar/lib/iText-2.1.7.js2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jar/lib/jackson-annotations-2.1.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jar/lib/jackson-core-2.1.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jar/lib/jackson-databind-2.1.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jar/lib/jasperreports-javaflow-5.6.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jar/lib/jaxen-1.1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jar/lib/jcommon-1.0.15.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jar/lib/jdt-compiler-3.1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jar/lib/jfreechart-1.0.12.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jar/lib/jpa.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jar/lib/jxl-2.6.10.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jar/lib/log4j-1.2.15.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jar/lib/lucene-analyzers-common-4.5.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jar/lib/lucene-core-4.5.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jar/lib/lucene-queryparser-4.5.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jar/lib/mondrian-3.1.1.12687.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jar/lib/olap4j-0.9.7.309-JS-3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jar/lib/png-encoder-1.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jar/lib/poi-3.7-20101029.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jar/lib/poi-ooxml-3.7-20101029.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jar/lib/poi-ooxml-schemas-3.7-20101029.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jar/lib/rhino-1.7R3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jar/lib/saaj-api-1.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jar/lib/serializer.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jar/lib/servlet-api-2.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jar/lib/spring-beans-2.5.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jar/lib/spring-core-2.5.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jar/lib/velocity-1.7-dep.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jar/lib/xalan-2.7.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jar/lib/xercesImpl-2.10.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jar/lib/xml-apis-ext.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jar/lib/xml-apis.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jar/lib/xmlbeans-2.5.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
