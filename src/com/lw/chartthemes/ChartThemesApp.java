@@ -22,8 +22,6 @@ import java.util.Map;
 
 
 /**
- * @author sanda zaharia (shertage@users.sourceforge.net)
- * @version $Id: ChartThemesApp.java 7199 2014-08-27 13:58:10Z teodord $
  */
 public class ChartThemesApp {
 

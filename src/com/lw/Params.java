@@ -6,7 +6,8 @@ package com.lw;
 public class Params {
 
     //当前工作空间目录
-    public static final String WORK_PATH = "/lw/Information/my_Information/framework_technology/JasperReport/jasper_sample/";
+    public static final String WORK_PATH
+            = "/lw/Information/my_Information/framework_technology/JasperReport/jasper_sample/";
 
 
     /**
@@ -22,6 +23,12 @@ public class Params {
 
     }
 
+    /**
+     * 设置数据 data 所在目录
+     *
+     * @param packageName 文件所在包名
+     * @return 最终路径
+     */
     public static String getReportDataPath(String packageName) {
 
         return WORK_PATH + "reports/" + packageName + "/data/";

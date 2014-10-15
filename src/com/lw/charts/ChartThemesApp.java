@@ -21,14 +21,13 @@ import java.util.Map;
 
 
 /**
- * @author sanda zaharia (shertage@users.sourceforge.net)
- * @version $Id: ChartThemesApp.java 7199 2014-08-27 13:58:10Z teodord $
  */
 public class ChartThemesApp {
 
     public static final String JASPER_PATH = Params.getReportPath("charts", "charts.jasper");
     public static final String JRPRINT_PATH = Params.getReportPath("charts", "charts.jrprint");
     public static final String DATA_PATH = Params.getReportDataPath("charts");
+
     /**
      *
      */
@@ -462,7 +461,6 @@ public class ChartThemesApp {
             xyds1.setRecordDelimiter("\r\n");
             xyds1.setUseFirstRowAsHeader(true);
             parameters.put("xyDatasource1", xyds1);
-
             /*JRCsvDataSource xyds2 = new JRCsvDataSource(JRLoader.getLocationInputStream(JASPER + "data/xyDatasource.csv"), "UTF-8");
             xyds2.setRecordDelimiter("\r\n");
             xyds2.setUseFirstRowAsHeader(true);

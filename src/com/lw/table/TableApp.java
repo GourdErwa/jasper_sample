@@ -21,8 +21,6 @@ import java.util.Map;
 
 
 /**
- * @author Teodor Danciu (teodord@users.sourceforge.net)
- * @version $Id: TableApp.java 7199 2014-08-27 13:58:10Z teodord $
  */
 public class TableApp extends AbstractSampleApp {
 
