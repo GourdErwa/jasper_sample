@@ -31,8 +31,8 @@
 		<groupHeader>
 			<band height="400">
 				<xyLineChart>
-					<chart evaluationTime="Report">
-						<reportElement x="0" y="0" width="555" height="300" uuid="82e1a762-637c-4508-ab62-167cb116792b"/>
+					<chart evaluationTime="Report" theme="default">
+						<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToTallestObject" x="0" y="0" width="555" height="300" uuid="82e1a762-637c-4508-ab62-167cb116792b"/>
 						<chartTitle>
 							<font fontName="黑体" size="12" isBold="true" pdfEncoding="Identity-H"/>
 							<titleExpression><![CDATA["系统日交易量时序图"]]></titleExpression>
@@ -55,7 +55,7 @@
 							<yValueExpression><![CDATA[new Double($F{amount}.doubleValue() + $F{amount}.doubleValue() * Math.sin($V{REPORT_COUNT}.doubleValue() * Math.log(1 + $V{REPORT_COUNT}.doubleValue())))]]></yValueExpression>
 						</xySeries>
 					</xyDataset>
-					<linePlot isShowShapes="false">
+					<linePlot isShowShapes="true">
 						<plot/>
 						<categoryAxisLabelExpression><![CDATA["小时"]]></categoryAxisLabelExpression>
 						<categoryAxisFormat>

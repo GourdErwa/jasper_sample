@@ -27,7 +27,6 @@ public class JFreeChartScriptlet extends JRDefaultScriptlet {
         dataset.setValue("C/C++", new Double(17.5));
         dataset.setValue("PHP", new Double(32.5));
         dataset.setValue("Perl", new Double(1.0));
-
         JFreeChart chart =
                 ChartFactory.createPieChart3D(
                         "Pie Chart 3D Demo 1",

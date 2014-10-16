@@ -1,7 +1,7 @@
 jasper_sample
 =============
 
-jasperReports-IReport 报表
+JasperReports-iReport 报表
 
 
 ###PDF 中文乱码解决方法
