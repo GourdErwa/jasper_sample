@@ -3,7 +3,7 @@
 	<property name="net.sf.jasperreports.export.xls.ignore.graphics" value="false"/>
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="6391"/>
 	<import value="net.sf.jasperreports.engine.data.JRCsvDataSource"/>
 	<subDataset name="categoryDataset" uuid="f674686b-b3b5-451d-a81b-3617caa71a9f">
 		<field name="full_name" class="java.lang.String">
@@ -819,7 +819,7 @@
 						<hyperlinkTooltipExpression><![CDATA["Time Series Chart"]]></hyperlinkTooltipExpression>
 					</chart>
 					<timeSeriesDataset timePeriod="Month">
-						<dataset incrementType="Group" incrementGroup="month">
+						<dataset incrementType="Group" incrementGroup="stage">
 							<datasetRun subDataset="timeSeriesDataset" uuid="4c11485f-ffb5-47e4-8c85-baccfea7bb21">
 								<dataSourceExpression><![CDATA[$P{timeSeriesDatasource2}]]></dataSourceExpression>
 							</datasetRun>
@@ -863,7 +863,7 @@
 						<hyperlinkTooltipExpression><![CDATA["High Low Chart"]]></hyperlinkTooltipExpression>
 					</chart>
 					<highLowDataset>
-						<dataset incrementType="Group" incrementGroup="month">
+						<dataset incrementType="Group" incrementGroup="stage">
 							<datasetRun subDataset="timeSeriesDataset" uuid="72ab7f9a-7e5b-4f0a-94b7-332dc2f8dd5f">
 								<dataSourceExpression><![CDATA[$P{timeSeriesDatasource3}]]></dataSourceExpression>
 							</datasetRun>

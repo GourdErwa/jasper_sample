@@ -12,6 +12,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="jasper_jars" level="project" />
     <orderEntry type="library" name="simfang_heiti" level="project" />
+    <orderEntry type="library" name="mongo-java-driver-2.12.2" level="project" />
   </component>
 </module>
 

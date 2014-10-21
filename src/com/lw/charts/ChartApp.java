@@ -16,13 +16,14 @@ import net.sf.jasperreports.export.*;
 
 import java.io.File;
 import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 
 
 /**
  */
-public class ChartThemesApp {
+public class ChartApp {
 
     public static final String JASPER_PATH = Params.getReportPath("charts", "charts.jasper");
     public static final String JRPRINT_PATH = Params.getReportPath("charts", "charts.jrprint");
@@ -32,7 +33,7 @@ public class ChartThemesApp {
      *
      */
     public static void main(String[] args) throws JRException {
-        new ChartThemesApp().test();
+        new ChartApp().test();
     }
 
 
@@ -438,13 +439,15 @@ public class ChartThemesApp {
             tpds1.setRecordDelimiter("\r\n");
             tpds1.setUseFirstRowAsHeader(true);
             parameters.put("timePeriodDatasource1", tpds1);
+            */
 
-            JRCsvDataSource tsds1 = new JRCsvDataSource(JRLoader.getLocationInputStream(JASPER + "data/timeSeriesDatasource.csv"), "UTF-8");
+            JRCsvDataSource tsds1 = new JRCsvDataSource(JRLoader.getLocationInputStream(DATA_PATH + "timeSeriesDatasource.csv"), "UTF-8");
             tsds1.setRecordDelimiter("\r\n");
             tsds1.setUseFirstRowAsHeader(true);
             tsds1.setDateFormat(new SimpleDateFormat("yyyy-MM-dd hh:mm:ss"));
             parameters.put("timeSeriesDatasource1", tsds1);
 
+            /*
             JRCsvDataSource tsds2 = new JRCsvDataSource(JRLoader.getLocationInputStream(JASPER + "data/timeSeriesDatasource.csv"), "UTF-8");
             tsds2.setRecordDelimiter("\r\n");
             tsds2.setUseFirstRowAsHeader(true);
@@ -455,7 +458,7 @@ public class ChartThemesApp {
             tsds3.setRecordDelimiter("\r\n");
             tsds3.setUseFirstRowAsHeader(true);
             tsds3.setDateFormat(new SimpleDateFormat("yyyy-MM-dd hh:mm:ss"));
-            parameters.put("timeSeriesDatasource3", tsds3);*/
+            parameters.put("timeSeriesDatasource3", tsds3);
 
             JRCsvDataSource xyds1 = new JRCsvDataSource(JRLoader.getLocationInputStream(DATA_PATH + "xyDatasource.csv"), "UTF-8");
             xyds1.setRecordDelimiter("\r\n");
@@ -463,7 +466,7 @@ public class ChartThemesApp {
             parameters.put("xyDatasource1", xyds1);
 
 
-            /*JRCsvDataSource xyds2 = new JRCsvDataSource(JRLoader.getLocationInputStream(JASPER + "data/xyDatasource.csv"), "UTF-8");
+            JRCsvDataSource xyds2 = new JRCsvDataSource(JRLoader.getLocationInputStream(JASPER + "data/xyDatasource.csv"), "UTF-8");
             xyds2.setRecordDelimiter("\r\n");
             xyds2.setUseFirstRowAsHeader(true);
             parameters.put("xyDatasource2", xyds2);

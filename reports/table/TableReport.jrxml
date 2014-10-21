@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="TableReport" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="30" bottomMargin="30" isFloatColumnFooter="true" uuid="c927e671-66f3-40f2-a189-49d30d607fe5">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="77"/>
+	<property name="ireport.y" value="40"/>
 	<style name="Table" backcolor="#99FFCC">
 		<box>
 			<pen lineWidth="1.0" lineColor="#FF0000"/>
@@ -71,7 +71,7 @@
 			<componentElement>
 				<reportElement style="Table" x="0" y="0" width="555" height="130" uuid="c475c968-5a05-4331-8147-5fc24a48070b"/>
 				<c:table xmlns:c="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
-					<datasetRun subDataset="TableData" uuid="aa07606e-95fd-4254-b51a-17474a067c74">
+					<datasetRun subDataset="TableData" uuid="bcba218d-d72f-4a0c-818e-ae940d81a476">
 						<datasetParameter name="table1">
 							<datasetParameterExpression><![CDATA[$F{tableList}]]></datasetParameterExpression>
 						</datasetParameter>
@@ -91,7 +91,7 @@
 								<text><![CDATA[系统名称]]></text>
 							</staticText>
 						</c:columnHeader>
-						<c:detailCell height="22" rowSpan="1">
+						<c:detailCell height="24" rowSpan="1">
 							<box leftPadding="10">
 								<bottomPen lineWidth="0.5"/>
 							</box>
@@ -120,7 +120,7 @@
 								<text><![CDATA[交易总笔数]]></text>
 							</staticText>
 						</c:columnHeader>
-						<c:detailCell height="22" rowSpan="1">
+						<c:detailCell height="24" rowSpan="1">
 							<box leftPadding="10">
 								<leftPen lineWidth="0.5"/>
 								<bottomPen lineWidth="0.5"/>
@@ -149,7 +149,7 @@
 								<text><![CDATA[交易成功笔数]]></text>
 							</staticText>
 						</c:columnHeader>
-						<c:detailCell height="22" rowSpan="1">
+						<c:detailCell height="24" rowSpan="1">
 							<box leftPadding="10">
 								<leftPen lineWidth="0.5"/>
 								<bottomPen lineWidth="0.5"/>
@@ -178,7 +178,7 @@
 								<text><![CDATA[交易成功率]]></text>
 							</staticText>
 						</c:columnHeader>
-						<c:detailCell height="22" rowSpan="1">
+						<c:detailCell height="24" rowSpan="1">
 							<box leftPadding="10">
 								<leftPen lineWidth="0.5"/>
 								<bottomPen lineWidth="0.5"/>
@@ -207,7 +207,7 @@
 								<text><![CDATA[系统交易笔数]]></text>
 							</staticText>
 						</c:columnHeader>
-						<c:detailCell height="22" rowSpan="1">
+						<c:detailCell height="24" rowSpan="1">
 							<box leftPadding="10">
 								<leftPen lineWidth="0.5"/>
 								<bottomPen lineWidth="0.5"/>
@@ -236,7 +236,7 @@
 								<text><![CDATA[系统交易成功率]]></text>
 							</staticText>
 						</c:columnHeader>
-						<c:detailCell height="22" rowSpan="1">
+						<c:detailCell height="24" rowSpan="1">
 							<box leftPadding="10">
 								<leftPen lineWidth="0.5"/>
 								<bottomPen lineWidth="0.5"/>
@@ -280,9 +280,9 @@
 		</band>
 	</pageFooter>
 	<summary>
-		<band height="31">
+		<band height="26">
 			<textField>
-				<reportElement x="0" y="0" width="555" height="31" uuid="5604c04d-5b9f-457c-a0d0-6960a6fad792"/>
+				<reportElement x="0" y="0" width="555" height="19" uuid="5604c04d-5b9f-457c-a0d0-6960a6fad792"/>
 				<textElement>
 					<font fontName="黑体" size="10" isPdfEmbedded="true"/>
 				</textElement>

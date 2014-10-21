@@ -1,7 +1,9 @@
-package com.lw.chartthemes;
+package com.lw.charts_mongodb;
 
 import com.lw.Params;
+import com.mongodb.*;
 import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.data.JRCsvDataSource;
 import net.sf.jasperreports.engine.export.JRCsvExporter;
 import net.sf.jasperreports.engine.export.JRRtfExporter;
@@ -16,36 +18,37 @@ import net.sf.jasperreports.export.*;
 
 import java.io.File;
 import java.io.UnsupportedEncodingException;
-import java.text.SimpleDateFormat;
+import java.net.UnknownHostException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
 /**
  */
-public class ChartThemesApp {
+public class ChartMongoDBApp {
 
-    public static final String JASPER_PATH = Params.getReportPath("chartthemes", "chartthemes.jasper");
-    public static final String JRPRINT_PATH = Params.getReportPath("chartthemes", "chartthemes.jrprint");
-    public static final String DATA_PATH = Params.getReportDataPath("chartthemes");
+    public static final String JASPER_PATH = Params.getReportPath("charts_mongodb", "charts_mongodb.jasper");
+    public static final String JRPRINT_PATH = Params.getReportPath("charts_mongodb", "charts_mongodb.jrprint");
+    public static final String DATA_PATH = Params.getReportDataPath("charts_mongodb");
 
     /**
      *
      */
-    public static void main(String[] args) throws JRException {
-        new ChartThemesApp().test();
+    public static void main(String[] args) throws JRException, UnknownHostException {
+        new ChartMongoDBApp().test();
     }
 
 
     /**
      *
      */
-    public void test() throws JRException {
+    public void test() throws JRException, UnknownHostException {
         fill();
         pdf();
-        html();
-        xmlEmbed();
+        /*xmlEmbed();
         xml();
+        html();
         rtf();
         xls();
         jxl();
@@ -55,14 +58,14 @@ public class ChartThemesApp {
         docx();
         xlsx();
         pptx();
-        xhtml();
+        xhtml();*/
     }
 
 
     /**
      *
      */
-    /*public void themes() throws JRException {
+   /* public void themes() throws JRException {
         long start = System.currentTimeMillis();
         XmlChartTheme.saveSettings(
                 SimpleSettingsFactory.createChartThemeSettings(),
@@ -83,13 +86,35 @@ public class ChartThemesApp {
     /**
      *
      */
-    public void fill() throws JRException {
+    public void fill() throws JRException, UnknownHostException {
         long start = System.currentTimeMillis();
         Map<String, Object> parameters = new HashMap<String, Object>();
 
-        putDataSources(parameters);
+        MongoClient mongoClient = new MongoClient("localhost", 27017);
+        DB db = mongoClient.getDB("iReport");
+        DBCollection collection = db.getCollection("system_exception");
+        DBCursor dbObjects = collection.find();
 
-        JasperFillManager.fillReportToFile(JASPER_PATH, parameters, new JREmptyDataSource());
+
+        List<DBObject> dbObjects1
+                = dbObjects.toArray();
+        //共
+
+        for (int i = 0; i < 20; i++) {
+            for (DBObject dbObject : dbObjects) {
+                dbObjects1.add(dbObject);
+                System.out.println(dbObject.toString());
+            }
+        }
+
+
+        JRBeanCollectionDataSource source
+                = new JRBeanCollectionDataSource(dbObjects1);
+        //putDataSources(parameters);
+        parameters.put("title", "system error Message1");
+        parameters.put("page_header", "system error Message header1");
+        parameters.put("p_mon_system_exception", source);
+        JasperFillManager.fillReportToFile(JASPER_PATH, parameters,new JREmptyDataSource());
         System.err.println("Filling time : " + (System.currentTimeMillis() - start));
     }
 
@@ -210,8 +235,8 @@ public class ChartThemesApp {
 
         exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
         exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(destFile));
-        net.sf.jasperreports.export.SimpleJxlReportConfiguration configuration =
-                new net.sf.jasperreports.export.SimpleJxlReportConfiguration();
+        SimpleJxlReportConfiguration configuration =
+                new SimpleJxlReportConfiguration();
         configuration.setOnePagePerSheet(true);
         exporter.setConfiguration(configuration);
 
@@ -390,98 +415,99 @@ public class ChartThemesApp {
      */
     public static void putDataSources(Map<String, Object> parameters) throws JRException {
         try {
-            JRCsvDataSource cds1 = new JRCsvDataSource(JRLoader.getLocationInputStream(DATA_PATH + "categoryDatasource.csv"), "UTF-8");
+           /* JRCsvDataSource cds1 = new JRCsvDataSource(JRLoader.getLocationInputStream(JASPER + "data/categoryDatasource.csv"), "UTF-8");
             cds1.setRecordDelimiter("\r\n");
             cds1.setUseFirstRowAsHeader(true);
             parameters.put("categoryDatasource1", cds1);
 
-            JRCsvDataSource cds2 = new JRCsvDataSource(JRLoader.getLocationInputStream(DATA_PATH + "categoryDatasource.csv"), "UTF-8");
+            JRCsvDataSource cds2 = new JRCsvDataSource(JRLoader.getLocationInputStream(JASPER + "data/categoryDatasource.csv"), "UTF-8");
             cds2.setRecordDelimiter("\r\n");
             cds2.setUseFirstRowAsHeader(true);
             parameters.put("categoryDatasource2", cds2);
 
-            JRCsvDataSource cds3 = new JRCsvDataSource(JRLoader.getLocationInputStream(DATA_PATH + "categoryDatasource.csv"), "UTF-8");
+            JRCsvDataSource cds3 = new JRCsvDataSource(JRLoader.getLocationInputStream(JASPER + "data/categoryDatasource.csv"), "UTF-8");
             cds3.setRecordDelimiter("\r\n");
             cds3.setUseFirstRowAsHeader(true);
             parameters.put("categoryDatasource3", cds3);
 
-            JRCsvDataSource cds4 = new JRCsvDataSource(JRLoader.getLocationInputStream(DATA_PATH + "categoryDatasource.csv"), "UTF-8");
+            JRCsvDataSource cds4 = new JRCsvDataSource(JRLoader.getLocationInputStream(JASPER + "data/categoryDatasource.csv"), "UTF-8");
             cds4.setRecordDelimiter("\r\n");
             cds4.setUseFirstRowAsHeader(true);
             parameters.put("categoryDatasource4", cds4);
 
-            JRCsvDataSource cds5 = new JRCsvDataSource(JRLoader.getLocationInputStream(DATA_PATH + "categoryDatasource.csv"), "UTF-8");
+            JRCsvDataSource cds5 = new JRCsvDataSource(JRLoader.getLocationInputStream(JASPER + "data/categoryDatasource.csv"), "UTF-8");
             cds5.setRecordDelimiter("\r\n");
             cds5.setUseFirstRowAsHeader(true);
             parameters.put("categoryDatasource5", cds5);
 
-            JRCsvDataSource cds6 = new JRCsvDataSource(JRLoader.getLocationInputStream(DATA_PATH + "categoryDatasource.csv"), "UTF-8");
+            JRCsvDataSource cds6 = new JRCsvDataSource(JRLoader.getLocationInputStream(JASPER + "data/categoryDatasource.csv"), "UTF-8");
             cds6.setRecordDelimiter("\r\n");
             cds6.setUseFirstRowAsHeader(true);
             parameters.put("categoryDatasource6", cds6);
 
-            JRCsvDataSource cds7 = new JRCsvDataSource(JRLoader.getLocationInputStream(DATA_PATH + "categoryDatasource.csv"), "UTF-8");
+            JRCsvDataSource cds7 = new JRCsvDataSource(JRLoader.getLocationInputStream(JASPER + "data/categoryDatasource.csv"), "UTF-8");
             cds7.setRecordDelimiter("\r\n");
             cds7.setUseFirstRowAsHeader(true);
             parameters.put("categoryDatasource7", cds7);
 
-            JRCsvDataSource pds1 = new JRCsvDataSource(JRLoader.getLocationInputStream(DATA_PATH + "pieDatasource.csv"), "UTF-8");
+            JRCsvDataSource pds1 = new JRCsvDataSource(JRLoader.getLocationInputStream(JASPER + "data/pieDatasource.csv"), "UTF-8");
             pds1.setRecordDelimiter("\r\n");
             pds1.setUseFirstRowAsHeader(true);
             parameters.put("pieDatasource1", pds1);
 
-            JRCsvDataSource pds2 = new JRCsvDataSource(JRLoader.getLocationInputStream(DATA_PATH + "pieDatasource.csv"), "UTF-8");
+            JRCsvDataSource pds2 = new JRCsvDataSource(JRLoader.getLocationInputStream(JASPER + "data/pieDatasource.csv"), "UTF-8");
             pds2.setRecordDelimiter("\r\n");
             pds2.setUseFirstRowAsHeader(true);
             parameters.put("pieDatasource2", pds2);
 
-            JRCsvDataSource tpds1 = new JRCsvDataSource(JRLoader.getLocationInputStream(DATA_PATH + "timePeriodDatasource.csv"), "UTF-8");
+            JRCsvDataSource tpds1 = new JRCsvDataSource(JRLoader.getLocationInputStream(JASPER + "data/timePeriodDatasource.csv"), "UTF-8");
             tpds1.setRecordDelimiter("\r\n");
             tpds1.setUseFirstRowAsHeader(true);
             parameters.put("timePeriodDatasource1", tpds1);
 
-            JRCsvDataSource tsds1 = new JRCsvDataSource(JRLoader.getLocationInputStream(DATA_PATH + "timeSeriesDatasource.csv"), "UTF-8");
+            JRCsvDataSource tsds1 = new JRCsvDataSource(JRLoader.getLocationInputStream(JASPER + "data/timeSeriesDatasource.csv"), "UTF-8");
             tsds1.setRecordDelimiter("\r\n");
             tsds1.setUseFirstRowAsHeader(true);
             tsds1.setDateFormat(new SimpleDateFormat("yyyy-MM-dd hh:mm:ss"));
             parameters.put("timeSeriesDatasource1", tsds1);
 
-            JRCsvDataSource tsds2 = new JRCsvDataSource(JRLoader.getLocationInputStream(DATA_PATH + "timeSeriesDatasource.csv"), "UTF-8");
+            JRCsvDataSource tsds2 = new JRCsvDataSource(JRLoader.getLocationInputStream(JASPER + "data/timeSeriesDatasource.csv"), "UTF-8");
             tsds2.setRecordDelimiter("\r\n");
             tsds2.setUseFirstRowAsHeader(true);
             tsds2.setDateFormat(new SimpleDateFormat("yyyy-MM-dd hh:mm:ss"));
             parameters.put("timeSeriesDatasource2", tsds2);
 
-            JRCsvDataSource tsds3 = new JRCsvDataSource(JRLoader.getLocationInputStream(DATA_PATH + "timeSeriesDatasource.csv"), "UTF-8");
+            JRCsvDataSource tsds3 = new JRCsvDataSource(JRLoader.getLocationInputStream(JASPER + "data/timeSeriesDatasource.csv"), "UTF-8");
             tsds3.setRecordDelimiter("\r\n");
             tsds3.setUseFirstRowAsHeader(true);
             tsds3.setDateFormat(new SimpleDateFormat("yyyy-MM-dd hh:mm:ss"));
-            parameters.put("timeSeriesDatasource3", tsds3);
+            parameters.put("timeSeriesDatasource3", tsds3);*/
 
             JRCsvDataSource xyds1 = new JRCsvDataSource(JRLoader.getLocationInputStream(DATA_PATH + "xyDatasource.csv"), "UTF-8");
             xyds1.setRecordDelimiter("\r\n");
             xyds1.setUseFirstRowAsHeader(true);
             parameters.put("xyDatasource1", xyds1);
 
-            JRCsvDataSource xyds2 = new JRCsvDataSource(JRLoader.getLocationInputStream(DATA_PATH + "xyDatasource.csv"), "UTF-8");
+
+            /*JRCsvDataSource xyds2 = new JRCsvDataSource(JRLoader.getLocationInputStream(JASPER + "data/xyDatasource.csv"), "UTF-8");
             xyds2.setRecordDelimiter("\r\n");
             xyds2.setUseFirstRowAsHeader(true);
             parameters.put("xyDatasource2", xyds2);
 
-            JRCsvDataSource xyds3 = new JRCsvDataSource(JRLoader.getLocationInputStream(DATA_PATH + "xyDatasource.csv"), "UTF-8");
+            JRCsvDataSource xyds3 = new JRCsvDataSource(JRLoader.getLocationInputStream(JASPER + "data/xyDatasource.csv"), "UTF-8");
             xyds3.setRecordDelimiter("\r\n");
             xyds3.setUseFirstRowAsHeader(true);
             parameters.put("xyDatasource3", xyds3);
 
-            JRCsvDataSource xyds4 = new JRCsvDataSource(JRLoader.getLocationInputStream(DATA_PATH + "xyDatasource.csv"), "UTF-8");
+            JRCsvDataSource xyds4 = new JRCsvDataSource(JRLoader.getLocationInputStream(JASPER + "data/xyDatasource.csv"), "UTF-8");
             xyds4.setRecordDelimiter("\r\n");
             xyds4.setUseFirstRowAsHeader(true);
             parameters.put("xyDatasource4", xyds4);
 
-            JRCsvDataSource xyds5 = new JRCsvDataSource(JRLoader.getLocationInputStream(DATA_PATH + "xyDatasource.csv"), "UTF-8");
+            JRCsvDataSource xyds5 = new JRCsvDataSource(JRLoader.getLocationInputStream(JASPER + "data/xyDatasource.csv"), "UTF-8");
             xyds5.setRecordDelimiter("\r\n");
             xyds5.setUseFirstRowAsHeader(true);
-            parameters.put("xyDatasource5", xyds5);
+            parameters.put("xyDatasource5", xyds5);*/
         } catch (UnsupportedEncodingException e) {
             throw new JRException(e);
         }

@@ -1,72 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="charts" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" resourceBundle="charts" whenResourceMissingType="Key" uuid="bce0058f-ad1c-4b93-9d6b-6289cc922a3c">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="charts" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Key" uuid="bce0058f-ad1c-4b93-9d6b-6289cc922a3c">
 	<property name="net.sf.jasperreports.export.xls.ignore.graphics" value="false"/>
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<import value="net.sf.jasperreports.engine.data.JRCsvDataSource"/>
-	<subDataset name="xyDataset" uuid="098b0755-483e-40aa-8ada-b6eaaa95a155">
-		<field name="amount" class="java.lang.Integer">
+	<subDataset name="timeSeriesDataset" uuid="1a67ae5c-afb5-4e60-92d7-6cad76bc836c">
+		<field name="transactions" class="java.lang.Integer">
 			<fieldDescription><![CDATA[]]></fieldDescription>
 		</field>
-		<field name="probability" class="java.lang.Integer">
+		<field name="generated" class="java.util.Date">
 			<fieldDescription><![CDATA[]]></fieldDescription>
 		</field>
-		<field name="sales_state" class="java.lang.String">
+		<field name="system_name" class="java.lang.String">
 			<fieldDescription><![CDATA[]]></fieldDescription>
 		</field>
-		<group name="salesState">
-			<groupExpression><![CDATA[$F{sales_state}]]></groupExpression>
+		<variable name="monthAmount" class="java.lang.Integer" resetType="Group" resetGroup="hour" calculation="Sum">
+			<variableExpression><![CDATA[$F{transactions}]]></variableExpression>
+			<initialValueExpression><![CDATA[new java.lang.Integer(0)]]></initialValueExpression>
+		</variable>
+		<group name="system_name">
+			<groupExpression><![CDATA[$F{system_name}]]></groupExpression>
 		</group>
-		<group name="probability">
-			<groupExpression><![CDATA[$F{probability}]]></groupExpression>
+		<group name="month">
+			<groupExpression><![CDATA[Integer.valueOf($F{generated}.getMonth())]]></groupExpression>
 		</group>
-		<group name="amount">
-			<groupExpression><![CDATA[$F{amount}]]></groupExpression>
+		<group name="day">
+			<groupExpression><![CDATA[Integer.valueOf($F{generated}.getDay())]]></groupExpression>
+		</group>
+		<group name="year">
+			<groupExpression><![CDATA[Integer.valueOf($F{generated}.getYear())]]></groupExpression>
+		</group>
+		<group name="hour">
+			<groupExpression><![CDATA[$F{generated}.getHours()]]></groupExpression>
 		</group>
 	</subDataset>
-	<parameter name="xyDatasource1" class="net.sf.jasperreports.engine.data.JRCsvDataSource"/>
-	<group name="XyLine">
+	<parameter name="timeSeriesDatasource1" class="net.sf.jasperreports.engine.data.JRCsvDataSource"/>
+	<group name="TimeSeries">
 		<groupExpression><![CDATA[null]]></groupExpression>
 		<groupHeader>
 			<band height="400">
-				<xyLineChart>
-					<chart evaluationTime="Report" theme="default">
-						<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToTallestObject" x="0" y="0" width="555" height="300" uuid="82e1a762-637c-4508-ab62-167cb116792b"/>
+				<timeSeriesChart>
+					<chart theme="default">
+						<reportElement positionType="Float" mode="Opaque" x="0" y="0" width="555" height="358" uuid="ef0f13a3-d82d-469d-a3ab-58b507f90748"/>
 						<chartTitle>
-							<font fontName="黑体" size="12" isBold="true" pdfEncoding="Identity-H"/>
-							<titleExpression><![CDATA["系统日交易量时序图"]]></titleExpression>
+							<titleExpression><![CDATA["系统交易量时序图"]]></titleExpression>
 						</chartTitle>
 						<chartSubtitle>
-							<subtitleExpression><![CDATA["2014-10-15"]]></subtitleExpression>
+							<subtitleExpression><![CDATA["Chart Displaying Time Series"]]></subtitleExpression>
 						</chartSubtitle>
-						<chartLegend/>
-						<hyperlinkTooltipExpression><![CDATA["XY Line Chart"]]></hyperlinkTooltipExpression>
+						<chartLegend position="Right">
+							<font fontName="黑体" pdfEncoding="Identity-H"/>
+						</chartLegend>
+						<hyperlinkTooltipExpression><![CDATA["Time Series Chart"]]></hyperlinkTooltipExpression>
 					</chart>
-					<xyDataset>
-						<dataset incrementType="Group" incrementGroup="probability">
-							<datasetRun subDataset="xyDataset" uuid="121717f4-1f69-46c0-908d-7bcbbe1fb714">
-								<dataSourceExpression><![CDATA[$P{xyDatasource1}]]></dataSourceExpression>
+					<timeSeriesDataset timePeriod="Minute">
+						<dataset incrementType="Group" incrementGroup="hour">
+							<datasetRun subDataset="timeSeriesDataset" uuid="4c11485f-ffb5-47e4-8c85-baccfea7bb21">
+								<dataSourceExpression><![CDATA[$P{timeSeriesDatasource1}]]></dataSourceExpression>
 							</datasetRun>
 						</dataset>
-						<xySeries>
-							<seriesExpression><![CDATA[$F{sales_state}]]></seriesExpression>
-							<xValueExpression><![CDATA[$F{probability}]]></xValueExpression>
-							<yValueExpression><![CDATA[new Double($F{amount}.doubleValue() + $F{amount}.doubleValue() * Math.sin($V{REPORT_COUNT}.doubleValue() * Math.log(1 + $V{REPORT_COUNT}.doubleValue())))]]></yValueExpression>
-						</xySeries>
-					</xyDataset>
-					<linePlot isShowShapes="true">
-						<plot/>
-						<categoryAxisLabelExpression><![CDATA["小时"]]></categoryAxisLabelExpression>
-						<categoryAxisFormat>
-							<axisFormat/>
-						</categoryAxisFormat>
+						<timeSeries>
+							<seriesExpression><![CDATA[$F{system_name}]]></seriesExpression>
+							<timePeriodExpression><![CDATA[$F{generated}]]></timePeriodExpression>
+							<valueExpression><![CDATA[$V{monthAmount}]]></valueExpression>
+						</timeSeries>
+					</timeSeriesDataset>
+					<timeSeriesPlot isShowLines="true" isShowShapes="true">
+						<plot orientation="Horizontal"/>
+						<timeAxisLabelExpression><![CDATA["时间"]]></timeAxisLabelExpression>
+						<timeAxisFormat>
+							<axisFormat tickLabelMask="" verticalTickLabels="false"/>
+						</timeAxisFormat>
 						<valueAxisLabelExpression><![CDATA["交易量"]]></valueAxisLabelExpression>
 						<valueAxisFormat>
-							<axisFormat/>
+							<axisFormat verticalTickLabels="false"/>
 						</valueAxisFormat>
-					</linePlot>
-				</xyLineChart>
+					</timeSeriesPlot>
+				</timeSeriesChart>
 			</band>
 		</groupHeader>
 	</group>
